@@ -44,7 +44,6 @@ export const login = async (req, res) => {
   const {  email, password } = req.body;
     // console.log(email, password)
   //  check if user is already existed
-
   try {
     const user = await UserModel.findOne({ email })
 
@@ -68,10 +67,8 @@ export const login = async (req, res) => {
           expiresIn:"60m"
         })
 
-    res.cookie("token", token, {httpOnly: true,
-      secure: false,
-      maxAge: 60 * 60 * 1000,
-  })
+    res.cookie("token", token)
+
     res.status(200).json({
           success:true,
           message:"login successful",
@@ -104,11 +101,11 @@ export const logout = async (req, res)=>{
 
 
  export const authMiddleWare  = async(req, res, next)=>{
-    const token = req.cookies
-    
+    const token = req?.cookies?.token
+    console.log(token)
 
     if(!token){
-      return res.status(401).json({
+      res.status(401).json({
         success:false,
         message:"unauthorized"
       })

@@ -22,18 +22,23 @@ import { checkAuth } from './store/auth-slice'
 
 function App() {
 
-  const dispatch =  useDispatch();
-   useEffect(() => {
-     dispatch(checkAuth());
-   }, [dispatch]);
+  // const dispatch =  useDispatch();
+  //  useEffect(() => {
+  //    dispatch(checkAuth());
+  //  }, [dispatch]);
 
-  const {isAuthenticated, user, loading, role} = useSelector((state) => state.auth);
+  // const {isAuthenticated, user, loading, role} = useSelector((state) => state.auth);
 
-   if (loading) return(
-    <div className='bg-orange-50 h-screen w-screen text-center justify-center items-center'>
-      <h1 className='text-4xl'>Loding.....</h1>
-    </div>
-   )
+  // console.log(isAuthenticated, user, loading)
+  const isAuthenticated  = true
+  const user = {role:"admin"}
+  const loading = false
+
+  //  if (loading) return(
+  //   <div className='bg-orange-50 h-screen w-screen text-center justify-center items-center'>
+  //     <h1 className='text-4xl'>Loding.....</h1>
+  //   </div>
+  //  )
 
     return (
       <div>

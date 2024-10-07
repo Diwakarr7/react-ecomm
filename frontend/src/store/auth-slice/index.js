@@ -3,7 +3,7 @@ import axios from "axios";
 
 const initialState = {
   isAuthenticated: false,
-  loading: true,
+  loading: false,
   user: null,
 }
 
@@ -39,9 +39,8 @@ export const loginUser = createAsyncThunk("/auth/login", async(data, {rejectWith
 //  check auth with promise
 export const checkAuth = createAsyncThunk("/auth/checkAuth", async () => {
   try {
-    const res = await axios.get("http://localhost:8080/api/auth/check-auth", {withCredentials:true, headers:{
-      "Cache-Control": "no-cache no-store must-revalidate, proxy-revalidate",
-    }})
+    const res = await axios.get("http://localhost:8080/api/auth/check-auth", {
+      withCredentials: true})
 
     return res.data
   }catch(err){
